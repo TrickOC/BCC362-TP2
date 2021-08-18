@@ -18,9 +18,8 @@ public class NotifyCommand implements PubSubCommand {
 
         response.setType("notify_ack");
 
-        if (!log.contains(m)) {
-            log.add(m);
-        }//else System.out.println("does not insert into log - notify command " + m.getLogId());
+        //else System.out.println("does not insert into log - notify command " + m.getLogId());
+        log.add(m);
 
         //System.out.println("Notify command - " + m.getBrokerId() + " : " + m.getContent());
 
