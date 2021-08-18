@@ -65,33 +65,14 @@ public class OneAppl {
         Iterator<String> itArgs = Arrays.stream(args).iterator();
         while (itArgs.hasNext()) {
             String arg = itArgs.next();
-
             switch (arg) {
-                case "-ip": {
-                    clientAddress = itArgs.next();
-                }
-                break;
-                case "-p": {
-                    clientPort = Integer.parseInt(itArgs.next());
-                }
-                break;
-                case "-bip": {
-                    brokerAddress = itArgs.next();
-                }
-                break;
-                case "-bp": {
-                    brokerPort = Integer.parseInt(itArgs.next());
-                }
-                break;
-                case "-nc": {
-                    numberOfClients = Integer.parseInt(itArgs.next());
-                }
-                break;
-                case "-na": {
-                    numberOfAccess = Integer.parseInt(itArgs.next());
-                }
-                break;
-                default: {
+                case "-ip" -> clientAddress = itArgs.next();
+                case "-p" -> clientPort = Integer.parseInt(itArgs.next());
+                case "-bip" -> brokerAddress = itArgs.next();
+                case "-bp" -> brokerPort = Integer.parseInt(itArgs.next());
+                case "-nc" -> numberOfClients = Integer.parseInt(itArgs.next());
+                case "-na" -> numberOfAccess = Integer.parseInt(itArgs.next());
+                default -> {
                     System.out.println("Comando \"" + arg + "\" inválido! Execução abortada");
                     return;
                 }

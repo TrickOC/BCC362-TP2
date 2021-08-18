@@ -23,7 +23,6 @@ public class SyncSubCommand implements PubSubCommand {
             subscribers.add(m.getContent());
             log.add(m);
 
-
             response.setContent("Subscriber added into backup: " + m.getContent());
 
         }

@@ -1,7 +1,10 @@
 package core;
 
+import java.io.Serial;
+
 public class MessageImpl implements Message {
 
+    @Serial
     private static final long serialVersionUID = -1298874117877687170L;
     private String type;
     private int id;

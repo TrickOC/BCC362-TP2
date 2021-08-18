@@ -16,17 +16,17 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class PubSubConsumer<S extends Socket> extends GenericConsumer<S> {
 
     private int uniqueLogId;
-    private SortedSet<Message> log;
-    private Set<String> subscribers;
-    private boolean isPrimary;
-    private String secondaryServer;
-    private int secondaryPort;
+    private final SortedSet<Message> log;
+    private final Set<String> subscribers;
+    private final boolean isPrimary;
+    private final String secondaryServer;
+    private final int secondaryPort;
 
     public PubSubConsumer(GenericResource<S> re, boolean isPrimary, String secondaryServer, int secondaryPort) {
         super(re);
         uniqueLogId = 1;
-        log = new TreeSet<Message>(new MessageComparator());
-        subscribers = new TreeSet<String>();
+        log = new TreeSet<>(new MessageComparator());
+        subscribers = new TreeSet<>();
 
         this.isPrimary = isPrimary;
         this.secondaryServer = secondaryServer;
@@ -42,7 +42,7 @@ public class PubSubConsumer<S extends Socket> extends GenericConsumer<S> {
 
             Message msg = (Message) in.readObject();
 
-            Message response = null;
+            Message response;
 
             if (!isPrimary && !msg.getType().startsWith("sync")) {
 
@@ -79,14 +79,10 @@ public class PubSubConsumer<S extends Socket> extends GenericConsumer<S> {
                 e1.printStackTrace();
             }
         }
-
     }
 
     public List<Message> getMessages() {
-        CopyOnWriteArrayList<Message> logCopy = new CopyOnWriteArrayList<Message>();
-        logCopy.addAll(log);
-
-        return logCopy;
+        return new CopyOnWriteArrayList<>(log);
     }
 
 }

@@ -21,9 +21,7 @@ public class Broker {
         System.out.print("Enter the secondary Broker port number: ");
         int secondPort = reader.nextInt();
 
-        boolean respBol;
-        if (respYN.equalsIgnoreCase("Y")) respBol = true;
-        else respBol = false;
+        boolean respBol = respYN.equalsIgnoreCase("Y");
 
         Server s = new Server(port, respBol, secondAddress, secondPort);
 
@@ -36,7 +34,6 @@ public class Broker {
             System.out.println("Broker stopped...");
             s.stop();
             brokerThread.interrupt();
-
         }
 
         //once finished
@@ -48,7 +45,7 @@ public class Broker {
         new Broker();
     }
 
-    class ThreadWrapper extends Thread {
+    static class ThreadWrapper extends Thread {
         Server s;
 
         public ThreadWrapper(Server s) {

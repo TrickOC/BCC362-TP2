@@ -39,15 +39,12 @@ public class PubCommand implements PubSubCommand {
 
         log.add(m);
 
-
         Message msg = new MessageImpl();
         msg.setContent(m.getContent());
         msg.setLogId(logId);
         msg.setType("notify");
 
-
-        CopyOnWriteArrayList<String> subscribersCopy = new CopyOnWriteArrayList<String>();
-        subscribersCopy.addAll(subscribers);
+        CopyOnWriteArrayList<String> subscribersCopy = new CopyOnWriteArrayList<>(subscribers);
         for (String aux : subscribersCopy) {
             String[] ipAndPort = aux.split(":");
             Client client = new Client(ipAndPort[0], Integer.parseInt(ipAndPort[1]));
